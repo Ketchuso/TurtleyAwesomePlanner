@@ -15,7 +15,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
 
-    calendar_event = db.relationship('Calendar_Event', back_populates='user')
+    calendar_event = db.relationship('Calendar_Event', back_populates='user', cascade='all, delete-orphan')
 
     serialize_rules = ("-calendar_event.user",)
 
@@ -26,7 +26,7 @@ class Event(db.Model, SerializerMixin):
     title = db.Column(db.String, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
-    calendar_event = db.relationship('Calendar_Event', back_populates='event')
+    calendar_event = db.relationship('Calendar_Event', back_populates='event', cascade='all, delete-orphan')
 
     serialize_rules = ("-calendar_event.event",)
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
-from random import randint, choice as rc
+from random import choice as rc
 
 # Remote library imports
 from faker import Faker
@@ -14,47 +14,40 @@ if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
-        # Seed code goes here!
 
+        # Clear existing data
         db.session.query(Calendar_Event).delete()
         db.session.query(Event).delete()
         db.session.query(User).delete()
-
-        # Commit the deletions
         db.session.commit()
 
-        # Seed Users
-        for _ in range(10):  # Create 10 users
-            user = User(
-                username=fake.user_name()
-            )
+        # Seed 2 Users
+        users = []
+        for _ in range(2):
+            user = User(username=fake.user_name())
             db.session.add(user)
+            users.append(user)
 
-        # Seed Events
-        for _ in range(5):  # Create 5 events
+        # Seed 5 Events
+        events = []
+        for _ in range(5):
             event = Event(
                 title=fake.bs(),
                 date=fake.date_time_this_year(after_now=True, tzinfo=None)
             )
             db.session.add(event)
+            events.append(event)
 
-        # Commit the users and events
         db.session.commit()
 
-        # Seed Calendar_Events (Many-to-Many relationship between users and events)
-        users = User.query.all()
-        events = Event.query.all()
-        
+        # Seed Calendar_Events (each user gets 1 random event)
         for user in users:
-            # Choose random events for each user
-            selected_events = rc(events)  # Pick one random event
+            selected_event = rc(events)
             calendar_event = Calendar_Event(
                 user_id=user.id,
-                event_id=selected_events.id
+                event_id=selected_event.id
             )
             db.session.add(calendar_event)
 
-        # Commit the Calendar_Events
         db.session.commit()
-
         print("Seeding complete!")

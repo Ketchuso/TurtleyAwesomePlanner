@@ -17,15 +17,21 @@ body {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   color: #ff686b;
+  position: fixed; /* Fix the position relative to the viewport */
+  top: 1%; /* Space from the top of the viewport */
+  left: 1%; /* Space from the left of the viewport */
   text-shadow: 
     1px 1px 0 #000, 
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000;
+  z-index: 1000; /* Ensures it's on top of other elements */
 }
+
+
 
 /* Custom calendar wrapper with background and border */
 .custom-calendar {
@@ -34,8 +40,9 @@ body {
   padding: 1rem;
   border: 4px solid black; /* Border around the calendar */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visibility */
-  width: 40%;
-  transform: translate(75%, 50%);
+  width: 60%; /* Increased width */
+  height: 58vh; /* Adjusted height to make the calendar taller */
+  transform: translate(33%, 50%); /* Adjusted to center the calendar better */
 }
 
 /* Styling for the individual days without borders */
@@ -43,9 +50,9 @@ body {
   border: none;
   border-radius: 15px;
   margin: 5px;
-  height: 60px;
+  height: 80px; /* Increased height for individual tiles */
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* Increased font size */
   background-color: #84dcc6;
   color: #ff686b;
   text-shadow: 
@@ -54,6 +61,7 @@ body {
     1px -1px 0 #000,
     -1px 1px 0 #000;
 }
+
 
 /* Active day styling */
 .react-calendar__tile--active {
@@ -66,6 +74,12 @@ body {
   background-color: #ffdf9c !important;
   color: #fff !important;
 }
+
+.react-calendar__tile:hover {
+  background-color: #ff686b !important; /* Apply hover color */
+  color: #fff !important; /* Ensure text color changes */
+}
+
 
 /* Days of the week */
 .react-calendar__month-view__days__day {
@@ -84,30 +98,29 @@ body {
   border: 4px solid black;
   border-radius: 15px;
   position: absolute;
-  right: 30%;
-  top: 35%;
-  transform-origin: left center;
+  right:20%;
+  top: 60%;
+  transform-origin: right;
   animation: tail-wiggle 2s infinite ease-in-out;
   z-index: -1;
-  transform: rotate(45deg)
 }
 
 @keyframes tail-wiggle {
   0%, 100% {
-    transform: rotate(45deg);
+    transform: rotate(90deg);
   }
   25% {
-    transform: rotate(50deg);
+    transform: rotate(85deg);
   }
   75% {
-    transform: rotate(40deg);
+    transform: rotate(95deg);
   }
 }
 
 .day-box {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #a5ffd6;
+  background-color: #84dcc6;
   border: 4px solid black;
   border-radius: 24px;
   font-size: 1.2rem;
@@ -119,7 +132,7 @@ body {
     -1px 1px 0 #000;
   text-align: center;
   position: absolute;
-  top: 10%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   height:auto;

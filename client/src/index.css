@@ -103,3 +103,15 @@ body {
     transform: rotate(40deg);
   }
 }
+
+.day-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #a5ffd6;
+  border: 2px solid #84dcc6;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #444;
+  text-align: center;
+  position: relative;
+}

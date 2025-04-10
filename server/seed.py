@@ -2,6 +2,7 @@
 
 # Standard library imports
 from random import choice as rc
+from datetime import datetime, time
 
 # Remote library imports
 from faker import Faker
@@ -31,9 +32,15 @@ if __name__ == '__main__':
         # Seed 5 Events
         events = []
         for _ in range(5):
+            # Generate a random date and time
+            random_datetime = fake.date_time_this_year(after_now=True, tzinfo=None)
+            random_date = random_datetime.date()  # Extract the date part
+            random_time = random_datetime.time()  # Extract the time part
+            
             event = Event(
                 title=fake.bs(),
-                date=fake.date_time_this_year(after_now=True, tzinfo=None)
+                date=random_date,
+                time=random_time
             )
             db.session.add(event)
             events.append(event)

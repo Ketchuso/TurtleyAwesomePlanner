@@ -3,7 +3,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
-from datetime import datetime
+from datetime import datetime, time
 
 from config import db
 
@@ -24,17 +24,12 @@ class Event(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    time = db.Column(db.Time, nullable=False)
 
     calendar_event = db.relationship('Calendar_Event', back_populates='event', cascade='all, delete-orphan')
 
     serialize_rules = ("-calendar_event.event",)
-
-    @validates('date')
-    def validate_date(self, key, value):
-        if not isinstance(value, datetime):
-            raise ValueError("date must be datetime")
-        return value
         
 
 class Calendar_Event(db.Model, SerializerMixin):

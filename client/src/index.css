@@ -108,10 +108,19 @@ body {
   margin-top: 1rem;
   padding: 1rem;
   background-color: #a5ffd6;
-  border: 2px solid #84dcc6;
-  border-radius: 12px;
+  border: 4px solid black;
+  border-radius: 24px;
   font-size: 1.2rem;
-  color: #444;
+  color: #ff686b;
+  text-shadow: 
+    1px 1px 0 #000, 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height:auto;
 }

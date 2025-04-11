@@ -39,10 +39,12 @@ def event_by_id(id):
         for attr in data:
             value = data[attr]
             if attr == "date":
-                value = datetime.fromisoformat(value)
+                value = datetime.strptime(value, "%Y-%m-%d").date()
+            elif attr == "time":
+                value = datetime.strptime(value, "%H:%M:%S").time()
             setattr(event, attr, value)
             db.session.commit()
-            return make_response(event.to_dict())
+        return make_response(event.to_dict())
     elif request.method == "DELETE":
         db.session.delete(event)
         db.session.commit()

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function DayDetails({ date , setclickeddate_null, openForm}) {
+function DayDetails({ date , setclickeddate_null, openForm, setShouldRefresh, shouldRefresh}) {
   const [events, setEvents] = useState([]);
   
   // let formattedDate = date.toISOString().split("T")[0];
@@ -12,9 +12,10 @@ function DayDetails({ date , setclickeddate_null, openForm}) {
       .then((data) => {
         setEvents(data);
         console.log(data)
+        setShouldRefresh(false)
       })
       .catch((error) => console.error("Error fetching events:", error));
-  }, [formattedDate]); 
+  }, [formattedDate, shouldRefresh]); 
 
   function delete_event(eventId) {
     fetch(`http://127.0.0.1:5555/events/${eventId}`, {
@@ -25,6 +26,7 @@ function DayDetails({ date , setclickeddate_null, openForm}) {
         setEvents((prevEvents) =>
           prevEvents.filter((event) => event.id !== deletedEvent.id)
         );
+        setShouldRefresh(prev => !prev);
       })
       .catch((error) => console.error("Error deleting event:", error));
   }

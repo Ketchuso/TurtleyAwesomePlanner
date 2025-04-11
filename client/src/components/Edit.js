@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-function Edit({eventid, editform_false}){
+function Edit({eventid, editform_false, setShouldRefresh}){
     const[newtitle, setnewtitle]= useState('')
     const[newdate, setnewdate]=useState('')
     const[newtime, setnewtime]=useState('')
@@ -19,6 +19,7 @@ function Edit({eventid, editform_false}){
           .then((r) => r.json())
           .then((updatedEvent) => {
             console.log("Updated event:", updatedEvent);
+            setShouldRefresh(prev => !prev)
           });
       }
 

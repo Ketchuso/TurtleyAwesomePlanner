@@ -9,8 +9,6 @@ from datetime import datetime
 from dateutil import parser
 
 
-
-
 # Views go here!
 
 @app.route('/users/<int:id>', methods=['GET','DELETE'])
@@ -32,6 +30,24 @@ def events():
     db.session.commit()
     return make_response(newEvent.to_dict(), 201)
 
+
+@app.route('/events/<int:id>', methods=['PATCH', 'DELETE'])
+def event_by_id(id):
+    event = Event.query.filter(Event.id==id).first()
+    if request.method == "PATCH":
+        data = request.json
+        for attr in data:
+            value = data[attr]
+            if attr == "date":
+                value = datetime.fromisoformat(value)
+            setattr(event, attr, value)
+            db.session.commit()
+            return make_response(event.to_dict())
+    elif request.method == "DELETE":
+        db.session.delete(event)
+        db.session.commit()
+        return make_response({'message': 'deleted'})
+
 @app.route('/events/<string:date>', methods=["GET"])
 def event_by_date(date):
     try:
@@ -49,21 +65,8 @@ def event_by_date(date):
         return make_response(jsonify({"message": "No events found for this date."}), 404)
 
 
-@app.route('/events/<int:id>', methods=['PATCH', 'DELETE'])
-def event_by_id(id):
-    event = Event.query.filter(Event.id==id).first()
-    if request.method == "PATCH":
-        data = request.json
-        for attr in data:
-            setattr(event, attr, data[attr])
-        db.session.commit()
-        return make_response(event.to_dict())
-    elif request.method == "DELETE":
-        db.session.delete(event)
-        db.session.commit()
-        return make_response("", 204)
-    
-# POST
+
+
 
 @app.route('/calendar_event', methods=['POST'])
 def calendarevent():

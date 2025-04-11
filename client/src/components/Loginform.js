@@ -16,7 +16,7 @@ function LoginForm({ onLogin }) {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include", // 👈 this line is crucial
+      credentials: "include",
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);
@@ -32,35 +32,36 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div className="form-container">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label className="labels" htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          autoComplete="off"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <label className="labels" htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button type="submit">
-        {isLoading ? "Loading..." : "Login"}
-      </button>
+        <button className="button-class" type="submit">
+          {isLoading ? "Loading..." : "Login"}
+        </button>
 
-      {errors.map((err, index) => (
-        <p key={index} style={{ color: "red" }}>
-          {err}
-        </p>
-      ))}
-    </form>
+        {errors.map((err, index) => (
+          <p key={index}>{err}</p>
+        ))}
+      </form>
+    </div>
   );
 }
 

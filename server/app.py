@@ -12,22 +12,27 @@ import ipdb
 
 class Signup(Resource):
     def post(self):
-        json=request.json
+        json = request.json
+        username = json.get('username', '').strip()
+        password = json.get('password', '').strip()
+
+        # Check if username or password is empty
+        if not username or not password:
+            return {'errors': ['Username and password cannot be empty']}, 400
+
         try:
-            user = User(
-                username=json['username']
-            )
-            user.password_hash = json['password']
+            user = User(username=username)
+            user.password_hash = password
             db.session.add(user)
             db.session.commit()
-   
+
             session['user_id'] = user.id
-            print("Successfully created user:", user.username)  # 
+            print("Successfully created user:", user.username)
             return user.to_dict(), 201
-        
+
         except Exception as e:
-            print("error:", e)
-            return {'error': 'Unprocessable Entity'}, 422 
+            return {'error': 'Unprocessable Entity'}, 422
+
 
 
 

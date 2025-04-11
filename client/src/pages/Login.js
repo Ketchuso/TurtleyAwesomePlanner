@@ -7,14 +7,14 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-container">
-      <h1>Reciplease</h1>
+      <h1>Welcome to your Turtley Awesome Planner!</h1>
 
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <p>
             Don't have an account?{" "}
-            <button onClick={() => setShowLogin(false)}>
+            <button className="button-class" onClick={() => setShowLogin(false)}>
               Sign Up
             </button>
           </p>
@@ -24,7 +24,7 @@ function Login({ onLogin }) {
           <SignUpForm onLogin={onLogin} />
           <p>
             Already have an account?{" "}
-            <button onClick={() => setShowLogin(true)}>
+            <button className="button-class" onClick={() => setShowLogin(true)}>
               Log In
             </button>
           </p>

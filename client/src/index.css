@@ -1,8 +1,10 @@
+/* Body and background color */
 body {
   background-color: #ffa69e;
   font-family: 'Jua', sans-serif;
 }
 
+/* Root variables */
 :root {
   --bg: #282c34;
   --header: #fff;
@@ -10,49 +12,49 @@ body {
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+/* Custom calendar container */
 .calendar-container {
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
 }
 
+/* Title styling */
 .title {
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #ff686b;
-  position: fixed; /* Fix the position relative to the viewport */
-  top: 1%; /* Space from the top of the viewport */
-  left: 1%; /* Space from the left of the viewport */
+  position: fixed;
+  top: 1%;
+  left: 1%;
   text-shadow: 
     1px 1px 0 #000, 
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000;
-  z-index: 1000; /* Ensures it's on top of other elements */
+  z-index: 1000;
 }
 
-
-
-/* Custom calendar wrapper with background and border */
+/* Custom calendar styling */
 .custom-calendar {
-  background-color: #a5ffd6; /* Background color */
-  border-radius: 25px; /* Rounded corners */
+  background-color: #a5ffd6;
+  border-radius: 25px;
   padding: 1rem;
-  border: 4px solid black; /* Border around the calendar */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visibility */
-  width: 60%; /* Increased width */
-  height: 58vh; /* Adjusted height to make the calendar taller */
-  transform: translate(33%, 50%); /* Adjusted to center the calendar better */
+  border: 4px solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  height: 58vh;
+  transform: translate(33%, 50%);
 }
 
-/* Styling for the individual days without borders */
+/* Styling for calendar days */
 .react-calendar__tile {
   border: none;
   border-radius: 15px;
   margin: 5px;
-  height: 80px; /* Increased height for individual tiles */
+  height: 80px;
   font-weight: bold;
-  font-size: 1.4rem; /* Increased font size */
+  font-size: 1.4rem;
   background-color: #84dcc6;
   color: #ff686b;
   text-shadow: 
@@ -62,35 +64,35 @@ body {
     -1px 1px 0 #000;
 }
 
-
-/* Active day styling */
+/* Active and today's day styles */
 .react-calendar__tile--active {
   background-color: #ffa3ab !important;
   color: #fff !important;
 }
 
-/* Styling for today's date (optional) */
 .react-calendar__tile--now {
   background-color: #ffdf9c !important;
   color: #fff !important;
 }
 
+/* Hover effect for calendar days */
 .react-calendar__tile:hover {
-  background-color: #ff686b !important; /* Apply hover color */
-  color: #fff !important; /* Ensure text color changes */
+  background-color: #ff686b !important;
+  color: #fff !important;
 }
 
-
-/* Days of the week */
+/* Days of the week border */
 .react-calendar__month-view__days__day {
-  border: 2px solid #000 !important; /* Ensure border is applied to all days */
+  border: 2px solid #000 !important;
 }
 
+/* Calendar navigation styles */
 .react-calendar__navigation {
   background: transparent;
   font-size: 1.5rem;
 }
 
+/* Calendar tail animation */
 .calendar-tail {
   width: 30px;
   height: 100px;
@@ -98,13 +100,14 @@ body {
   border: 4px solid black;
   border-radius: 15px;
   position: absolute;
-  right:20%;
+  right: 20%;
   top: 60%;
   transform-origin: right;
   animation: tail-wiggle 2s infinite ease-in-out;
   z-index: -1;
 }
 
+/* Keyframes for tail-wiggle */
 @keyframes tail-wiggle {
   0%, 100% {
     transform: rotate(90deg);
@@ -117,6 +120,7 @@ body {
   }
 }
 
+/* Day box styling */
 .day-box {
   margin-top: 1rem;
   padding: 1rem;
@@ -135,13 +139,89 @@ body {
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height:auto;
+  height: auto;
 }
+
+/* Form container */
 .form-container {
+  border: 4px solid black;
   position: relative;
   z-index: 10;
-  background-color: white; /* Optional, for clarity */
+  background-color: #84dcc6;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button class styling */
+.button-class {
+  background-color: #ff686b;
+  color: #fff;
+  padding: 10px 20px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.button-class:hover {
+  color: white;
+  background-color: #ff686b;
+  border-color: #ff686b;
+}
+
+/* Header and text styling */
+h1, p, .labels {
+  color: #ff686b;
+  text-shadow: 
+    1px 1px 0 #000, 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+
+/* Input field styles */
+input, select {
+  width: 100%;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border: 2px solid #a5ffd6;
+  border-radius: 5px;
+  background-color: #a5ffd6;
+  font-size: 1.1rem;
+  color: #ff686b;
+  box-sizing: border-box; /* Ensures padding doesn't affect input width */
+  transition: border-color 0.3s ease;
+}
+
+/* Focused input styles */
+input:focus, select:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+/* Input field error styles */
+input.error, select.error {
+  border-color: red;
+}
+
+/* Error message styling */
+input.error + .error-message, select.error + .error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Styling for labels */
+.labels {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #ff686b;
+  text-shadow: 
+    1px 1px 0 #000, 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
 }

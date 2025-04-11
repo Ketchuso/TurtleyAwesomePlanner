@@ -5,6 +5,8 @@ import Edit from "./Edit";
 function App() {
   const [clickedDate, setClickedDate] = useState(null)
   const [editingEventId, setEditingEventId] = useState(null);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
+
 
   function setClickedDate_null(){
     return setClickedDate(null)
@@ -41,8 +43,8 @@ function App() {
   return (
     <div className="app">
       <Calendar onDateClick={setClickedDate} />
-      {clickedDate && <DayDetails date={clickedDate} setclickeddate_null={setClickedDate_null} openForm={openForm}  />}
-      {editform ? <Edit eventid={editingEventId} editform_false={editform_false}/> : ""}
+      {clickedDate && <DayDetails date={clickedDate} setclickeddate_null={setClickedDate_null} openForm={openForm} setShouldRefresh={setShouldRefresh} shouldRefresh={shouldRefresh}/>}
+      {editform ? <Edit eventid={editingEventId} editform_false={editform_false} setShouldRefresh={setShouldRefresh}/> : ""}
       </div>
   );
 }

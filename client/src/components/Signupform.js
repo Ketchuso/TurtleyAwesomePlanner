@@ -28,7 +28,6 @@ function SignUpForm({ onLogin }) {
         r.json().then((user) => onLogin(user));
       } else {
         r.json().then((err) => {
-          // Safely handle different error response shapes
           const safeErrors = err.errors || [err.error] || ["An unknown error occurred"];
           setErrors(safeErrors);
         });
@@ -37,42 +36,45 @@ function SignUpForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div className="form-container">
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit}>
+        <label className="labels" htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          autoComplete="off"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        autoComplete="current-password"
-      />
+        <label className="labels" htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
+        />
 
-      <label htmlFor="password_confirmation">Password Confirmation</label>
-      <input
-        type="password"
-        id="password_confirmation"
-        value={passwordConfirmation}
-        onChange={(e) => setPasswordConfirmation(e.target.value)}
-        autoComplete="current-password"
-      />
+        <label className="labels" htmlFor="password_confirmation">Password Confirmation</label>
+        <input
+          type="password"
+          id="password_confirmation"
+          value={passwordConfirmation}
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
+          autoComplete="current-password"
+        />
 
-      <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
+        <button className="button-class" type="submit">
+          {isLoading ? "Loading..." : "Sign Up"}
+        </button>
 
-      {errors.map((err, index) => (
-        <p key={index} style={{ color: "red" }}>
-          {err}
-        </p>
-      ))}
-    </form>
+        {errors.map((err, index) => (
+          <p key={index}>{err}</p>
+        ))}
+      </form>
+    </div>
   );
 }
 

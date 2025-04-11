@@ -26,6 +26,7 @@ if __name__ == '__main__':
         users = []
         for _ in range(2):
             user = User(username=fake.user_name())
+            user.password = "test123"  # Set hashed password
             db.session.add(user)
             users.append(user)
 
@@ -34,8 +35,8 @@ if __name__ == '__main__':
         for _ in range(5):
             # Generate a random date and time
             random_datetime = fake.date_time_this_year(after_now=True, tzinfo=None)
-            random_date = random_datetime.date()  # Extract the date part
-            random_time = random_datetime.time()  # Extract the time part
+            random_date = random_datetime.date()
+            random_time = random_datetime.time()
             
             event = Event(
                 title=fake.bs(),

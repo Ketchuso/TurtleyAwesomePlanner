@@ -48,8 +48,12 @@ class Event(db.Model, SerializerMixin):
     time = db.Column(db.Time, nullable=False)
 
     calendar_event = db.relationship('Calendar_Event', back_populates='event', cascade='all, delete-orphan')
+    
+    @property
+    def user_ids(self):
+        return [ce.user_id for ce in self.calendar_event]
 
-    serialize_rules = ("-calendar_event.event",)
+    serialize_only = ("id", "title", "date", "time", "user_ids")
         
 
 class Calendar_Event(db.Model, SerializerMixin):
@@ -62,5 +66,5 @@ class Calendar_Event(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='calendar_event')
     event = db.relationship('Event', back_populates='calendar_event')
 
-    serialize_rules = ("-user.calendar_event", "-event.calendar_event")
+    serialize_rules = ("-user.calendar_event", "-event.calendar_event", "user_id")
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function DayDetails({ user, date , setclickeddate_null, openForm, setShouldRefresh, shouldRefresh}) {
+function DayDetails({ openaddEvent, user, date , setclickeddate_null, openForm, setShouldRefresh, shouldRefresh}) {
   const [events, setEvents] = useState([]);
   
   // let formattedDate = date.toISOString().split("T")[0];
@@ -58,11 +58,27 @@ function DayDetails({ user, date , setclickeddate_null, openForm, setShouldRefre
       .catch((error) => console.error("Error deleting event:", error));
   }
 
- 
+  // const[isPinkDate, setPink]= useState(null)
 
+  
+  // useEffect(() => {
+  //   if (!Array.isArray(events)) return;
+
+  //   const pink = events.some(event =>
+  //     Array.isArray(event.user_ids) &&
+  //     event.user_ids.includes(1) &&
+  //     event.user_ids.includes(2)
+  //   );
+
+  //   setPink(pink);
+  // }, [events]);
+  
+ 
   return (
-    <div className="day-box">
+    <div className='day-box'>
+      {/* <div className= 'day-box'> */}
       <button onClick={setclickeddate_null} className="delete">🗑️</button>
+      <button onClick={openaddEvent} className="edit_event">➕</button>
       <h2>{new Date(date).toDateString()}</h2>
       {events.length > 0 ? (
         <ul>

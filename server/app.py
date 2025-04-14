@@ -100,8 +100,9 @@ class UserById(Resource):
 class EventList(Resource):
     def post(self):
         data = request.json
-        date_obj = datetime.fromisoformat(data['date'])
-        new_event = Event(title=data['title'], date=date_obj)
+        date_obj = datetime.strptime(data["date"], "%Y-%m-%d").date()
+        time_obj=datetime.strptime(data["time"], "%H:%M:%S").time()
+        new_event = Event(title=data['title'], date=date_obj, time=time_obj)
         db.session.add(new_event)
         db.session.commit()
         return make_response(new_event.to_dict(), 201)

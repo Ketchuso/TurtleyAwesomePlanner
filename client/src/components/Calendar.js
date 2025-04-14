@@ -19,6 +19,15 @@ function Calendar({ onDateClick }) {
           />
 
           <div className="calendar-tail" />
+
+          <div className="turtle-head">
+            <div className="left-eye"></div>
+            <div className="right-eye"></div>
+          </div>
+
+
+
+
           
         </div>
       );

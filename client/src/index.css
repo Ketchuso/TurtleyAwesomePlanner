@@ -35,7 +35,7 @@ body {
 
 /* On hover, enlarge the calendar container */
 .calendar-container:hover {
-  transform: scale(1.2); /* Enlarge by 20% */
+  transform: scale(1.05); /* Enlarge by 20% */
 }
 
 .title {
@@ -185,6 +185,11 @@ body {
   transform: translate(-50%, -50%);
   height: auto;
   z-index: 15;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.day-box:hover {
+  transform: translateX(-50%) translateY(-50%) scale(1.4); 
 }
 
 .day-box.pink {
@@ -251,17 +256,19 @@ input:focus, select:focus {
   outline: none;
 }
 
-/* Input field error styles */
 input.error, select.error {
-  border-color: red;.logout {
+  border-color: red;
+}
+
+.logout {
   position: fixed;
-  top: 0;  /* Keep it at the top */
-  right: 0;  /* Align it to the right */
-  margin-top: 10px; /* Some space from the top */
-  margin-right: 10px; /* Some space from the right */
-  z-index: 1001;  /* Ensure it's in front of other elements */
+  top: 0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 10px;
+  z-index: 1001;
 }
-}
+
 
 /* Error message styling */
 input.error + .error-message, select.error + .error-message {
@@ -426,8 +433,28 @@ input.error + .error-message, select.error + .error-message {
   border-color: black;
 }
 
-
 #exit-add{
+  position: absolute;
+  top: 10px;  /* Adjust position to be 10px from the top */
+  right: 10px;  /* Adjust position to be 10px from the right */
+  z-index: 100;
+}
+
+#exit-detail{
+  position: absolute;
+  top: 10px;  /* Adjust position to be 10px from the top */
+  right: 10px;  /* Adjust position to be 10px from the right */
+  z-index: 100;
+}
+
+#event-add{
+  position: absolute;
+  top: 10px;  /* Adjust position to be 10px from the top */
+  right: 45px;  /* Adjust position to be 10px from the right */
+  z-index: 100;
+}
+
+#edit-exit{
   position: absolute;
   top: 10px;  /* Adjust position to be 10px from the top */
   right: 10px;  /* Adjust position to be 10px from the right */

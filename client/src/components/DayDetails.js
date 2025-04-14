@@ -77,15 +77,15 @@ function DayDetails({ openaddEvent, user, date , setclickeddate_null, openForm, 
   return (
     <div className='day-box'>
       {/* <div className= 'day-box'> */}
-      <button onClick={setclickeddate_null} className="interact-buttons">❌</button>
-      <button onClick={openaddEvent} className="interact-buttons">➕</button>
+      <button onClick={setclickeddate_null} id="exit-detail" className="interact-buttons">❌</button>
+      <button onClick={openaddEvent} id="event-add" className="interact-buttons">➕</button>
       <h2>{new Date(date).toDateString()}</h2>
       {events.length > 0 ? (
         <ul>
           {events.map((event, i) => (
             <li key={i}>
               {event.title} - {new Date(`${event.date}T${event.time}`).toLocaleTimeString() + " "}
-              <button onClick={() => openForm(event.id)} className="interact-buttons">✏️</button>
+              <button onClick={() => openForm(event.id)} id="edit" className="interact-buttons">✏️</button>
               <button onClick={() => delete_event(event.id)} className="interact-buttons">❌</button>
             </li>
           ))}

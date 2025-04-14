@@ -26,7 +26,7 @@ function Edit({eventid, editform_false, setShouldRefresh}){
       return (
         <div className="form-container">
           <h1 className="form-title">Edit Event</h1>
-          <button onClick={editform_false} className="delete">🗑️</button>
+          <button onClick={editform_false} id="edit-exit" className="interact-buttons">❌</button>
           <form className="form-container" onSubmit={(e) => {
             e.preventDefault()
             handleSubmit(eventid)
@@ -57,11 +57,11 @@ function Edit({eventid, editform_false, setShouldRefresh}){
                 type="text"
                 value={newtime}
                 onChange={(e) => setnewtime(e.target.value)}
-                placeholder="Enter time (etc. 3:00)"
+                placeholder="Enter time (ex. 3:00) - 24 hour time"
               />
             </label>
     
-            <button type="submit">Submit</button>
+            <button className="button-class" type="submit">Submit</button>
           </form>
         </div>
       );

@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="app">
-      <NavBar setUser={setUser} />
+      <NavBar setUser={setUser} user={user}/>
       {!user ? (
         <Login onLogin={setUser} />
       ) : (

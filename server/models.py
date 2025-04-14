@@ -5,9 +5,8 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from datetime import datetime, time
 from sqlalchemy.ext.hybrid import hybrid_property
-
-
 from config import db, bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Models go here!
 
@@ -16,15 +15,17 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
-    _password_hash = db.Column(db.String)
+    _password_hash = db.Column(db.String, nullable=False)
+
 
     calendar_event = db.relationship('Calendar_Event', back_populates='user', cascade='all, delete-orphan')
 
     serialize_rules = ("-calendar_event.user",)
 
+
     @hybrid_property
     def password_hash(self):
-        raise AttributeError('Password hashes may not be viewed.')
+        raise Exception('Password hashes may not be viewed.')
 
     @password_hash.setter
     def password_hash(self, password):
@@ -35,6 +36,8 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
+
+
 
 class Event(db.Model, SerializerMixin):
     __tablename__ = "events"

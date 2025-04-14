@@ -7,8 +7,10 @@ function Calendar({ onDateClick }) {
 
 
     return (
+      <>
+        <h1 className="title">My Calendar</h1>
         <div className="calendar-container">
-          <h1 className="title">My Calendar</h1>
+          
           <ReactCalendar
             onClickDay={(value) => {
               setDate(value);
@@ -30,6 +32,7 @@ function Calendar({ onDateClick }) {
 
           
         </div>
+      </>
       );
 }
 

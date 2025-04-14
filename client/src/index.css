@@ -30,6 +30,12 @@ body {
   max-width: 1000px; /* Restrict calendar max width */
   margin: 0 auto;
   z-index: 10;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+/* On hover, enlarge the calendar container */
+.calendar-container:hover {
+  transform: scale(1.2); /* Enlarge by 20% */
 }
 
 .title {
@@ -119,7 +125,7 @@ body {
 .calendar-tail {
   width: 30px;
   height: 100px;
-  background-color: #a5ffd6;
+  background-color: #84dcc6;
   border: 4px solid black;
   border-radius: 15px;
   position: absolute;
@@ -128,18 +134,25 @@ body {
   transform-origin: left;
   animation: tail-wiggle 2s infinite ease-in-out;
   z-index: -1;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+/* On hover, enlarge the tail */
+.calendar-tail:hover {
+  transform: scale(1.2) rotate(95deg); /* Apply scale and ensure rotation stays correct */
+  animation: none; /* Disable animation while hovered */
 }
 
 /* Keyframes for tail-wiggle */
 @keyframes tail-wiggle {
-  0%, 100% {
-    transform: rotate(90deg);
+  0% {
+    transform: rotate(85deg); /* start from left side */
   }
-  25% {
-    transform: rotate(85deg);
+  50% {
+    transform: rotate(95deg); /* swing to right side */
   }
-  75% {
-    transform: rotate(95deg);
+  100% {
+    transform: rotate(85deg); /* swing back to left side */
   }
 }
 
@@ -288,6 +301,12 @@ input.error + .error-message, select.error + .error-message {
   align-items: center;
   gap: 6px;
   z-index: -1;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+/* On hover, enlarge the head */
+.turtle-head:hover {
+  transform: translateX(-50%) scale(1.1); /* Keep it centered and enlarge by 20% */
 }
 
 /* Eyes */

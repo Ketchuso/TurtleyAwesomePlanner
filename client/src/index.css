@@ -51,6 +51,14 @@ body {
     1px -1px 0 #000,
     -1px 1px 0 #000;
   z-index: 1000;
+  transition: transform 0.3s ease, font-size 0.3s ease; /* Smooth transition for transform and font size */
+}
+
+/* On hover, enlarge and slightly rotate the title */
+.title:hover {
+  transform: scale(1.2) rotate(-5deg); /* Enlarge by 20% and rotate slightly */
+  color: #84dcc6; /* Change the color on hover (optional) */
+  cursor: pointer;
 }
 
 
@@ -406,4 +414,22 @@ input.error + .error-message, select.error + .error-message {
     max-width: 180px;
     top: 35%;
   }
+}
+
+.interact-buttons{
+  background-color: #a5ffd6;
+  border: 4px solid #ff686b;  /* Add width and style to the border */
+  border-radius: 50%;        /* Keep border radius */
+  cursor: pointer;
+}
+.interact-buttons:hover{
+  border-color: black;
+}
+
+
+#exit-add{
+  position: absolute;
+  top: 10px;  /* Adjust position to be 10px from the top */
+  right: 10px;  /* Adjust position to be 10px from the right */
+  z-index: 100;
 }

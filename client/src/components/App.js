@@ -3,6 +3,8 @@ import Calendar from "./Calendar";
 import DayDetails from "./DayDetails";
 import Edit from "./Edit";
 import Login from "../pages/Login";
+import NavBar from "./NavBar";
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +36,7 @@ function App() {
 
   return (
     <div className="app">
+      <NavBar setUser={setUser} />
       {!user ? (
         <Login onLogin={setUser} />
       ) : (
@@ -46,6 +49,7 @@ function App() {
               openForm={openForm}
               setShouldRefresh={setShouldRefresh}
               shouldRefresh={shouldRefresh}
+              user={user}
             />
           )}
           {editform && (

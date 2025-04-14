@@ -13,7 +13,7 @@ function Edit({eventid, editform_false, setShouldRefresh}){
           body: JSON.stringify({
             title: newtitle,
             date: newdate,
-            time: newtime
+            time: newtime+":00"
           }),
         })
           .then((r) => r.json())
@@ -47,7 +47,7 @@ function Edit({eventid, editform_false, setShouldRefresh}){
                 type="text"
                 value={newdate}
                 onChange={(e) => setnewdate(e.target.value)}
-                placeholder="Enter date"
+                placeholder="Enter date (etc. 2025-01-01)"
               />
             </label>
     
@@ -57,7 +57,7 @@ function Edit({eventid, editform_false, setShouldRefresh}){
                 type="text"
                 value={newtime}
                 onChange={(e) => setnewtime(e.target.value)}
-                placeholder="Enter time"
+                placeholder="Enter time (etc. 3:00)"
               />
             </label>
     

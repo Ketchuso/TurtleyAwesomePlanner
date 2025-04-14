@@ -49,7 +49,7 @@ const formattedDate = clickedDate.toLocaleDateString("en-CA")
       return (
         <div className="form-container">
           <h1 className="form-title">Add Event</h1>
-          <button onClick={addform_false} className="delete">🗑️</button>
+          <button onClick={addform_false} id="exit-add" className="interact-buttons">❌</button>
           <form className="form-container" onSubmit={(e) => {
             e.preventDefault()
             handleSubmit(clickedDate)
@@ -73,7 +73,7 @@ const formattedDate = clickedDate.toLocaleDateString("en-CA")
               />
             </label>
     
-            <button type="submit">Submit</button>
+            <button className="button-class"type="submit">Submit</button>
           </form>
         </div>
       );

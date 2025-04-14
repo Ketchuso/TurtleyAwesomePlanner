@@ -25,7 +25,7 @@ body {
   margin-bottom: 1rem;
   color: #ff686b;
   position: fixed;
-  top: 1%;
+  top: 0%;
   left: 1%;
   text-shadow: 
     1px 1px 0 #000, 
@@ -231,3 +231,13 @@ input.error + .error-message, select.error + .error-message {
     1px -1px 0 #000,
     -1px 1px 0 #000;
 }
+
+.logout {
+  transform: translateY(25px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 1%;
+  margin-right: 1%;
+}
+

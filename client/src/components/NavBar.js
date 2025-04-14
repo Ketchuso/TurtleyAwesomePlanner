@@ -1,6 +1,6 @@
 import React from "react";
 
-function NavBar({ setUser }) {
+function NavBar({ setUser, user }) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -9,14 +9,22 @@ function NavBar({ setUser }) {
     });
   }
 
-  return (
+  if (user) {
+    return (
       <nav>
-        <button variant="outline" onClick={handleLogoutClick}>
+        <button
+          id="logout"
+          className="button-class logout"
+          variant="outline"
+          onClick={handleLogoutClick}
+        >
           Logout
         </button>
       </nav>
-  );
-}
+    );
+  }
 
+  return null;
+}
 
 export default NavBar;

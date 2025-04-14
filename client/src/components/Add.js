@@ -3,22 +3,23 @@ function Add({user, clickedDate, addform_false, setShouldRefresh}){
     const[newtitle, setnewtitle]= useState('')
     const[newtime, setnewtime]=useState('')
 
-console.log('clickedDate:', clickedDate, 'newtime:', newtime);
-const formattedDate = clickedDate.toLocaleDateString("en-CA")
+  if (!clickedDate) return null;
+  console.log('clickedDate:', clickedDate, 'newtime:', newtime);
+  const formattedDate = clickedDate.toLocaleDateString("en-CA")
 
- function handleSubmit(clickedDate) {
-  // First: create an event
-  fetch(`http://127.0.0.1:5555/events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: newtitle,
-      date: formattedDate,
-      time: newtime + ":00",
-    }),
-  })
+  function handleSubmit() {
+    // First: create an event
+    fetch(`http://127.0.0.1:5555/events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: newtitle,
+        date: formattedDate,
+        time: newtime + ":00",
+      }),
+    })
     .then((r) => r.json())
     .then((newEvent) => {
       console.log("Created event:", newEvent);
@@ -69,7 +70,7 @@ const formattedDate = clickedDate.toLocaleDateString("en-CA")
                 type="text"
                 value={newtime}
                 onChange={(e) => setnewtime(e.target.value)}
-                placeholder="Enter time (etc. 3:00)"
+                placeholder="Enter time (ex. 3:00) - 24 hour time"
               />
             </label>
     

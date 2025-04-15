@@ -38,16 +38,19 @@ function Calendar({ onDateClick , user, setShouldRefresh, shouldRefresh}) {
             value={date}
             className="custom-calendar"
             tileContent={({ date, view }) => {
-              const formatted = date.toISOString().split("T")[0];
-              console.log("Checking date:", formatted);
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, '0');
+              const day = String(date.getDate()).padStart(2, '0');
+              const formatted = `${year}-${month}-${day}`;
+            
               if (view === "month" && hasEventDates.includes(formatted)) {
-                console.log("Event found for date:", formatted);
                 return <div className="event-dot" />;
               }
               return null;
             }}
+            
           />
-
+          
           <div className="calendar-tail" />
 
           <div className="turtle-head">

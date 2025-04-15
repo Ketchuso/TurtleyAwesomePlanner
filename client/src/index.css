@@ -42,15 +42,15 @@ body {
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #ff686b;
-  position: fixed;
-  top: -20px;  /* Move it 20px upwards */
-  left: 1%;
+  position: absolute;
+  top: 10%;  /* Move it 20px upwards */
+  left: 42%;
   text-shadow: 
     1px 1px 0 #000, 
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000;
-  z-index: 1000;
+  z-index: 5;
   transition: transform 0.3s ease, font-size 0.3s ease; /* Smooth transition for transform and font size */
 }
 
@@ -372,6 +372,7 @@ input.error + .error-message, select.error + .error-message {
     flex-wrap: wrap;
   }
 
+
   .react-calendar__tile {
     width: 12%;
     height: 50px;
@@ -459,4 +460,21 @@ input.error + .error-message, select.error + .error-message {
   top: 10px;  /* Adjust position to be 10px from the top */
   right: 10px;  /* Adjust position to be 10px from the right */
   z-index: 100;
+}
+
+
+
+.custom-calendar .react-calendar__tile {
+  position: relative;
+}
+
+.event-dot {
+  width: 6px;
+  top: 15%;
+  height: 6px;
+  background-color: #ff686b;
+  border-radius: 50%;
+  position: absolute;
+  right: 7%;
+  transform: translateX(-50%);
 }

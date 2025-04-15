@@ -51,7 +51,11 @@ function App() {
         <Login onLogin={setUser} />
       ) : (
         <>
-          <Calendar onDateClick={setClickedDate} />
+          <Calendar onDateClick={setClickedDate} 
+          user={user}
+          setShouldRefresh={setShouldRefresh}
+          shouldRefresh={shouldRefresh}
+          />
           {clickedDate && (
             <DayDetails
               date={clickedDate}

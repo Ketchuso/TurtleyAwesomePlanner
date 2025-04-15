@@ -20,9 +20,7 @@ function Calendar({ onDateClick , user, setShouldRefresh, shouldRefresh}) {
           .catch((error) => console.error("Error fetching events:", error));
       }, [ shouldRefresh, user_id, setShouldRefresh]); 
     
-      const hasEventDates = events.map(event =>
-        new Date(event.date).toLocaleDateString("en-CA")
-      );
+      const hasEventDates = events.map(event => event.date);
 
       console.log(hasEventDates); // <-- Add this line
 
@@ -40,7 +38,7 @@ function Calendar({ onDateClick , user, setShouldRefresh, shouldRefresh}) {
             value={date}
             className="custom-calendar"
             tileContent={({ date, view }) => {
-              const formatted = date.toLocaleDateString("en-CA");
+              const formatted = date.toISOString().split("T")[0];
               console.log("Checking date:", formatted);
               if (view === "month" && hasEventDates.includes(formatted)) {
                 console.log("Event found for date:", formatted);

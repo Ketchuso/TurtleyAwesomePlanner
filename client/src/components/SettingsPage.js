@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const SettingsPage = () => {
@@ -7,24 +7,13 @@ const SettingsPage = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const { id } = useParams();
 
-  // Effect to fetch and set the current username (if available from the backend)
-  useEffect(() => {
-    console.log(id); // This should print the actual user ID in the console
-    
-    // Assuming you fetch user info here, and set the username from a response
-    const fetchUserInfo = async () => {
-      const response = await fetch(`/users/${id}`);
-      const userData = await response.json();
-      if (userData && userData.username) {
-        setUsername(userData.username); // Set current username from the server
-      }
-    };
-    
-    fetchUserInfo();
-  }, [id]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!username && !password && !passwordConfirmation) {
+      alert("Please provide at least one field to update 🕸️");
+      return;
+    }
 
     // Only proceed if password fields match if they are provided
     if (password || passwordConfirmation) {

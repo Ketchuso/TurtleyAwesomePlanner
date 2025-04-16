@@ -1,20 +1,21 @@
 import React from "react";
 import App from "./components/App";
 import Task from "./components/Task";
-import Join from "./components/Join";
 import Home from "./components/Home";
+import SettingsPage from "./components/SettingsPage";
 import "./index.css";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 
+
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />, // layout
+      element: <App />, // layout with NavBar
       children: [
         {
-          path: "/", // this is the calendar page
+          path: "/", // calendar/home
           element: <Home />,
         },
         {
@@ -22,13 +23,12 @@ const router = createBrowserRouter([
           element: <Task />,
         },
         {
-          path: "/Join",
-          element: <Join />,
+          path: "/Settings/:id", // move SettingsPage in here
+          element: <SettingsPage />,
         },
       ],
     },
   ]);
-
 
 const container = document.getElementById("root");
 const root = createRoot(container);

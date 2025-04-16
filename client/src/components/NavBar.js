@@ -42,10 +42,10 @@ function NavBar({ setUser, user }) {
         </nav>
         <nav className="nav-container">
         <NavLink
-          to="/Join"
+          to={`/Settings/${user.id}`}
           className="nav-text"
         >
-          Joined Calendar
+          Settings
         </NavLink>
         </nav>
 

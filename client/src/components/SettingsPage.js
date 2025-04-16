@@ -1,90 +1,114 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 const SettingsPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-
   const { id } = useParams();
 
+  // Effect to fetch and set the current username (if available from the backend)
   useEffect(() => {
     console.log(id); // This should print the actual user ID in the console
+    
+    // Assuming you fetch user info here, and set the username from a response
+    const fetchUserInfo = async () => {
+      const response = await fetch(`/users/${id}`);
+      const userData = await response.json();
+      if (userData && userData.username) {
+        setUsername(userData.username); // Set current username from the server
+      }
+    };
+    
+    fetchUserInfo();
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== passwordConfirmation) {
-      alert("Passwords do not match.");
-      return;
+    // Only proceed if password fields match if they are provided
+    if (password || passwordConfirmation) {
+      if (password !== passwordConfirmation) {
+        alert("The passwords have to match 🐸");
+        return;
+      }
+    }
+
+    // Prepare the request body with the fields to update
+    const body = {};
+
+    // Include the username in the request only if it was changed
+    if (username !== '') {
+      body.username = username;
+    }
+
+    // Include password change only if passwords are filled in
+    if (password) {
+      body.password = password;
+    }
+    if (passwordConfirmation) {
+      body.password_confirmation = passwordConfirmation;
     }
 
     try {
-      fetch(`/users/${id}`, { 
+      const response = await fetch(`/users/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({
-          username,
-          password,
-          password_confirmation: passwordConfirmation,
-        }),
-      })
-      .then((r) => {
-        if (r.ok) {
-          alert("Info Updated Successfully");
-        } else {
-          alert("Update failed.");
-        }
-      })
-      .catch(error => {
-        console.error("Update error:", error);
-        alert("An error occurred.");
+        body: JSON.stringify(body),
       });
+
+      if (response.ok) {
+        alert("Updated your info! 🐢");
+      } else {
+        const err = await response.json();
+        alert(err.error || "Update failed.");
+      }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Update error:", error);
+      alert("An error occurred.");
     }
   };
 
   return (
     <>
-      <h1 id="settings">Settings</h1>
+      <h1>Settings</h1>
 
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input 
-            type="text" 
-            id="username" 
-            placeholder="Update your username"
+            type="text"
+            id="username"
+            placeholder="Update your username here"
             value={username}
-            onChange={(e) => setUsername(e.target.value)} 
+            onChange={(e) => setUsername(e.target.value)}
           />
 
           <label htmlFor="password">Password:</label>
           <input 
-            type="password" 
-            id="password" 
-            placeholder="Update your password"
+            type="password"
+            id="password"
+            placeholder="Update your password here"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <label htmlFor="passwordConfirmation">Confirm Password:</label>
           <input 
-            type="password" 
-            id="passwordConfirmation" 
-            placeholder="Confirm your password"
+            type="password"
+            id="passwordConfirmation"
+            placeholder="Confirm your new password"
             value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)} 
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
           />
 
           <button id="save-settings" className="button-class" type="submit">
             Save Settings
           </button>
+          <h3>hint: only put in username or password if updating them</h3>
         </form>
       </div>
     </>

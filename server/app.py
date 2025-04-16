@@ -110,7 +110,14 @@ class UserById(Resource):
         data = request.get_json()
 
         if "username" in data:
-            user.username = data['username']
+            existing_user = User.query.filter(User.username == data["username"]).first()
+            if existing_user and existing_user.id != user.id:
+                return make_response({"error": "Username already taken! 🐍"}, 400)
+            elif existing_user and existing_user.id == user.id:
+                return make_response({"error": "That is your current username, silly goose! 🪿"}, 400)
+            
+            user.username = data["username"]
+
         if "password" in data:
             user.password_hash = data['password']
         

@@ -88,13 +88,35 @@ class Logout(Resource):
 class UserById(Resource):
     def get(self, id):
         user = User.query.filter(User.id == id).first()
+        if not user:
+            return make_response({"error": "User not found"}, 404)
+        
         return make_response(user.to_dict(), 200)
 
     def delete(self, id):
         user = User.query.filter(User.id == id).first()
+        if not user:
+            return make_response({"error": "User not found"}, 404)
+        
         db.session.delete(user)
         db.session.commit()
         return make_response("", 204)
+    
+    def patch(self, id):
+        user = User.query.filter(User.id == id).first()
+        if not user:
+            return make_response({"error": "User not found"}, 404)
+        
+        data = request.get_json()
+
+        if "username" in data:
+            user.username = data['username']
+        if "password" in data:
+            user.password_hash = data['password']
+        
+        db.session.commit()
+        return make_response(user.to_dict(), 200)
+
 
 
 class EventList(Resource):

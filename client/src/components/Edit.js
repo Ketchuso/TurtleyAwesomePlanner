@@ -24,9 +24,9 @@ function Edit({eventid, editform_false, setShouldRefresh}){
       }
 
       return (
-        <div className="form-container">
+        <div className="event-form form-container">
           <h1 className="form-title">Edit Event</h1>
-          <button onClick={editform_false} id="edit-exit" className="interact-buttons">❌</button>
+          <button onClick={editform_false} id="edit-exit" className="interact-buttons"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
           <form className="form-container" onSubmit={(e) => {
             e.preventDefault()
             handleSubmit(eventid)

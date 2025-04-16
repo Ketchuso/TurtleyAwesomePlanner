@@ -34,10 +34,10 @@ function NavBar({ setUser, user }) {
         </nav>
         <nav className="nav-container">
         <NavLink
-          to="/Friend"
+          to="/Task"
           className="nav-text"
         >
-          Friend's Calendar
+          Task List
         </NavLink>
         </nav>
         <nav className="nav-container">

@@ -1,6 +1,6 @@
 import React from "react";
 import App from "./components/App";
-import Friend from "./components/Friend";
+import Task from "./components/Task";
 import Join from "./components/Join";
 import Home from "./components/Home";
 import "./index.css";
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
           element: <Home />,
         },
         {
-          path: "/Friend",
-          element: <Friend />,
+          path: "/Task",
+          element: <Task />,
         },
         {
           path: "/Join",

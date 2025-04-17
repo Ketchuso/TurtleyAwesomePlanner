@@ -3,6 +3,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
+from sqlalchemy.sql import func
 from datetime import datetime, time
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt

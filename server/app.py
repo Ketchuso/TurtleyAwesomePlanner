@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request, make_response, session
 from flask_restful import Api, Resource
 from models import User, Event, Calendar_Event
 from config import app, db, api
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from dateutil import parser
 import ipdb
 
@@ -119,6 +119,11 @@ class UserById(Resource):
             user.username = data["username"]
 
         if "password" in data:
+        # Use the authenticate method to check if the current password matches
+            if user.authenticate(data["password"]):
+                return make_response({"error": "That is your current password, silly goose! 🪿"}, 400)
+
+            # If not the same, update the password
             user.password_hash = data['password']
         
         db.session.commit()

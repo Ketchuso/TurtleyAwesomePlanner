@@ -10,7 +10,6 @@ from faker import Faker
 # Local imports
 from app import app
 from models import db, User, Event, Calendar_Event
-from werkzeug.security import generate_password_hash
 
 if __name__ == '__main__':
     fake = Faker()
@@ -27,13 +26,13 @@ if __name__ == '__main__':
         users = []
         for _ in range(1):  # Seed one random user
             user = User(username=fake.user_name())
-            user.password_hash = "test123"  # This will automatically hash the password using the setter
+            user.password_hash = "test123"  
             db.session.add(user)
             users.append(user)
 
         # Seed the second user with username "Yeji" and password "0101"
         yeji_user = User(username="Yeji")
-        yeji_user.password_hash = "0101"  # This will automatically hash the password using the setter
+        yeji_user.password_hash = "0101"  
         db.session.add(yeji_user)
         users.append(yeji_user)
 

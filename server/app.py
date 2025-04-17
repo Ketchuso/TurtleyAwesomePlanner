@@ -9,32 +9,6 @@ from datetime import datetime, timedelta, timezone
 from dateutil import parser
 import ipdb
 
-
-
-# class Signup(Resource):
-#     def post(self):
-#         json = request.json
-#         username = json.get('username', '').strip()
-#         password = json.get('password', '').strip()
-
-#         # Check if username or password is empty
-#         if not username or not password:
-#             return {'errors': ['Username and password cannot be empty']}, 400
-
-#         try:
-#             user = User(username=username)
-#             user.password_hash = password
-#             db.session.add(user)
-#             db.session.commit()
-
-#             session['user_id'] = user.id
-#             print("Successfully created user:", user.username)
-#             return user.to_dict(), 201
-
-#         except Exception as e:
-#             return {'error': 'Unprocessable Entity'}, 422
-
-
 class Signup(Resource):
     
     def post(self):
@@ -49,9 +23,6 @@ class Signup(Resource):
 
         return user.to_dict(), 201
 
-
-
-
 class CheckSession(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
@@ -59,7 +30,6 @@ class CheckSession(Resource):
             return make_response(user.to_dict(), 200)
         else:
             return {'error': 'Unauthorized'}, 401
-
 
 class Login(Resource):
     def post(self):
@@ -72,9 +42,6 @@ class Login(Resource):
 
         return {'error': 'Invalid username or password'}, 401 
 
-
-
-
 class Logout(Resource):
     def delete(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
@@ -83,7 +50,6 @@ class Logout(Resource):
             return make_response("", 204)
         else:
             return {'error': 'not logged in'}, 401 
-        
 
 class UserById(Resource):
     def get(self, id):
@@ -129,8 +95,6 @@ class UserById(Resource):
         db.session.commit()
         return make_response(user.to_dict(), 200)
 
-
-
 class EventList(Resource):
     def post(self):
         data = request.json
@@ -140,7 +104,6 @@ class EventList(Resource):
         db.session.add(new_event)
         db.session.commit()
         return make_response(new_event.to_dict(), 201)
-
 
 class EventById(Resource):
     def patch(self, id):
@@ -162,7 +125,6 @@ class EventById(Resource):
         db.session.commit()
         return make_response({'message': 'deleted'})
 
-
 class EventByDate(Resource):
     def get(self, date):
         try:
@@ -177,7 +139,6 @@ class EventByDate(Resource):
         else:
             return make_response(jsonify({"message": "No events found for this date."}), 404)
 
-
 class CalendarEvent(Resource):
     def post(self):
         data = request.json
@@ -185,7 +146,6 @@ class CalendarEvent(Resource):
         db.session.add(new_cal_event)
         db.session.commit()
         return make_response(new_cal_event.to_dict(), 201)
-
 
 class CalendarEventById(Resource):
     def delete(self, id):
@@ -207,7 +167,6 @@ class CalendarEventByUserAndDate(Resource):
         except ValueError:
             return make_response(jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400)
 
-        # Correct filtering using comma-separated arguments
         calendar_events = Calendar_Event.query.join(Event).filter(
             Calendar_Event.user_id == user_id,
             Event.date == parsed_date
@@ -219,7 +178,6 @@ class CalendarEventByUserAndDate(Resource):
             return make_response(user_events, 200)
         else:
             return make_response(jsonify({"message": "No events found for this date."}), 404)
-
 
 # Add to API
 api.add_resource(Signup, '/signup', endpoint='signup')
@@ -234,7 +192,6 @@ api.add_resource(CalendarEvent, '/calendar_event')
 api.add_resource(CalendarEventById, '/calendar_event/<int:id>')
 api.add_resource(CalendarEventByUserId, '/calendar_event/user/<int:user_id>')
 api.add_resource(CalendarEventByUserAndDate, '/calendar_event/<int:user_id>/<string:date>')
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

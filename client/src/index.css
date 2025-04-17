@@ -163,12 +163,6 @@ body {
   transition: transform 0.3s ease; /* Smooth transition for transform */
 }
 
-/* On hover, enlarge the tail */
-.calendar-tail:hover {
-  transform: scale(1.2) rotate(95deg); /* Apply scale and ensure rotation stays correct */
-  animation: none; /* Disable animation while hovered */
-}
-
 /* Keyframes for tail-wiggle */
 @keyframes tail-wiggle {
   0% {

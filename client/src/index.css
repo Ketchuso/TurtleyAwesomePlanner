@@ -9,32 +9,18 @@
   --base-variant: #74ad81;
 }
 
-.darkmode{
-  --primary-color: #cb5456;
-  --secondary-color: #7abb9e;
-  --accent-color: #76aa9f;
-  --text-color: #cf5658;
-  --error-color: red;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --background-color: #cf5658;
-  --base-variant: #1d5e2c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Body and background color */
 body {
   background-color: var(--background-color);
   font-family: 'Jua', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* Center content vertically */
-  align-items: center;  /* Center content horizontally */
-  min-height: 100vh;  /* Make sure content takes up the full height */
+  justify-content: center;  
+  align-items: center;  
+  min-height: 100vh;  
   margin: 0;
   padding: 0;
-  position: relative; /* Allow absolute positioning of elements */
+  position: relative; 
 }
 
 /* Custom calendar container */
@@ -43,17 +29,17 @@ body {
   border-radius: 20px;
   text-align: center;
   position: relative;
-  width: 80%; /* Ensure calendar has a more reasonable width */
-  max-width: 1000px; /* Restrict calendar max width */
+  width: 80%; 
+  max-width: 1000px; 
   max-height: 500px;
   margin: 0 auto;
   z-index: 10;
-  transition: transform 0.3s ease; /* Smooth transition for transform */
+  transition: transform 0.3s ease; 
 }
 
 /* On hover, enlarge the calendar container */
 .calendar-container:hover {
-  transform: scale(1.05); /* Enlarge by 20% */
+  transform: scale(1.05); 
   transform-origin: center;
 }
 
@@ -62,7 +48,7 @@ body {
   margin-bottom: 1rem;
   color: var(--text-color);
   position: absolute;
-  top: 10%;  /* Move it 20px upwards */
+  top: 10%;  
   left: 42%;
   text-shadow: 
     1px 1px 0 #000, 
@@ -70,16 +56,14 @@ body {
     1px -1px 0 #000,
     -1px 1px 0 #000;
   z-index: 5;
-  transition: transform 0.3s ease, font-size 0.3s ease; /* Smooth transition for transform and font size */
+  transition: transform 0.3s ease, font-size 0.3s ease; 
 }
 
 /* On hover, enlarge and slightly rotate the title */
 .title:hover {
-  transform: scale(1.2) rotate(-5deg); /* Enlarge by 20% and rotate slightly */
-  color: #84dcc6; /* Change the color on hover (optional) */
+  transform: scale(1.2) rotate(-5deg); 
+  color: #84dcc6; 
 }
-
-
 
 /* Custom calendar styling */
 .custom-calendar {
@@ -112,8 +96,8 @@ body {
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000;
-  width: 13%; /* Makes tiles responsive */
-  min-width: 45px; /* Ensures the tiles aren't too small */
+  width: 13%; 
+  min-width: 45px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,18 +139,18 @@ body {
   border: 4px solid black;
   border-radius: 15px;
   position: absolute;
-  left:95%;  /* Position the tail closer to the body */
-  top: 40%;  /* Align tail near the bottom of the head */
+  left:95%;  
+  top: 40%;  
   transform-origin: left;
   animation: tail-wiggle 2s infinite ease-in-out;
   z-index: -1;
-  transition: transform 0.3s ease; /* Smooth transition for transform */
+  transition: transform 0.3s ease; 
 }
 
 /* On hover, enlarge the tail */
 .calendar-tail:hover {
-  transform: scale(1.2) rotate(95deg); /* Apply scale and ensure rotation stays correct */
-  animation: none; /* Disable animation while hovered */
+  transform: scale(1.2) rotate(95deg); 
+  animation: none; 
 }
 
 /* Keyframes for tail-wiggle */
@@ -207,12 +191,12 @@ body {
 
 .day-box.pink {
   background-color: pink;
-  color: white; /* optional: better contrast */
+  color: white; 
 }
 
 .form-container {
   border: 4px solid black;
-  position: relative; /* Ensure relative positioning */
+  position: relative; 
   z-index: 10;
   background-color: #84dcc6;
   padding: 20px;
@@ -262,7 +246,7 @@ input, select {
   background-color: var(--secondary-color);
   font-size: 1.1rem;
   color: var(--primary-color);
-  box-sizing: border-box; /* Ensures padding doesn't affect input width */
+  box-sizing: border-box; 
   transition: border-color 0.3s ease;
 }
 
@@ -306,21 +290,12 @@ input.error + .error-message, select.error + .error-message {
     -1px 1px 0 #000;
 }
 
-.logout {
-  position: fixed;
-  top: 0;  /* Keep it at the top */
-  right: 0;  /* Align it to the right */
-  margin-top: 20px; /* Some space from the top */
-  margin-right: 10px; /* Some space from the right */
-  z-index: 1001;  /* Ensure it's in front of other elements */
-}
-
 /* Turtle head */
 .turtle-head {
   position: absolute;
-  left: 10%;  /* Center head */
-  top: 25%;  /* Adjust the head's vertical position */
-  transform: translateX(-50%); /* Center head horizontally */
+  left: 10%;  
+  top: 25%;  
+  transform: translateX(-50%);
   width: 250px;
   height: 250px;
   background-color: var(--accent-color);
@@ -332,12 +307,12 @@ input.error + .error-message, select.error + .error-message {
   align-items: center;
   gap: 6px;
   z-index: -1;
-  transition: transform 0.3s ease; /* Smooth transition for transform */
+  transition: transform 0.3s ease; 
 }
 
 /* On hover, enlarge the head */
 .turtle-head:hover {
-  transform: translateX(-50%) scale(1.1); /* Keep it centered and enlarge by 20% */
+  transform: translateX(-50%) scale(1.1); 
 }
 
 /* Eyes */
@@ -399,7 +374,7 @@ input.error + .error-message, select.error + .error-message {
   .turtle-head {
     width: 40vw;
     max-width: 200px;
-    top: 30%; /* Adjust turtle head to be better centered */
+    top: 30%;
   }
 
   .title {
@@ -442,8 +417,8 @@ input.error + .error-message, select.error + .error-message {
 
 .interact-buttons{
   background-color: var(--primary-color);
-  border: 2px solid white;  /* Add width and style to the border */
-  border-radius: 50%;        /* Keep border radius */
+  border: 2px solid white;  
+  border-radius: 50%;
   cursor: pointer;
 }
 .interact-buttons:hover{
@@ -452,29 +427,29 @@ input.error + .error-message, select.error + .error-message {
 
 #exit-add{
   position: absolute;
-  top: 10px;  /* Adjust position to be 10px from the top */
-  right: 10px;  /* Adjust position to be 10px from the right */
+  top: 10px;  
+  right: 10px;  
   z-index: 100;
 }
 
 #exit-detail{
   position: absolute;
-  top: 10px;  /* Adjust position to be 10px from the top */
-  right: 8px;  /* Adjust position to be 10px from the right */
+  top: 10px;  
+  right: 8px;  
   z-index: 100;
 }
 
 #event-add{
   position: absolute;
-  top: 10px;  /* Adjust position to be 10px from the top */
-  right: 45px;  /* Adjust position to be 10px from the right */
+  top: 10px;  
+  right: 45px;  
   z-index: 100;
 }
 
 #edit-exit{
   position: absolute;
-  top: 10px;  /* Adjust position to be 10px from the top */
-  right: 10px;  /* Adjust position to be 10px from the right */
+  top: 10px;  
+  right: 10px; 
   z-index: 100;
 }
 
@@ -496,7 +471,7 @@ input.error + .error-message, select.error + .error-message {
 .nav-container{
   display:flex;
   flex-direction: row;
-  position: fixed;  /* Fix it at the top-left of the viewport */
+  position: fixed; 
   top: 3%;
   left: 41%;
   align-items: center;
@@ -521,7 +496,7 @@ input.error + .error-message, select.error + .error-message {
 
 .nav-text.active {
   font-weight: bold;
-  color: var(--secondary-color); /* blue when active */
+  color: var(--secondary-color); 
 }
 
 .check-box{
@@ -594,7 +569,7 @@ input.error + .error-message, select.error + .error-message {
 
 .task-container{
   border: 4px solid black;
-  position: relative; /* Ensure relative positioning */
+  position: relative; 
   height: 500px;
   z-index: 10;
   background-color: #84dcc6;
@@ -632,34 +607,34 @@ input.error + .error-message, select.error + .error-message {
 }
 
 .event-form {
-  position: fixed; /* Position the form fixed to the screen */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for exact centering */
-  width: 80%; /* Adjust the width to your needs */
-  max-width: 500px; /* Optional, to prevent it from becoming too wide */
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  width: 80%; 
+  max-width: 500px; 
   background-color: var(--secondary-color);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000; 
 }
 
 #settings {
   cursor: pointer;
-  transition: transform 0.3s ease-in-out; /* Smooth rotation */
+  transition: transform 0.3s ease-in-out; 
   transform-origin: 50%, 50%;
   transform: translateY(9%)
 }
 
 #settings:hover {
-  transform: rotate(-180deg) translateY(15%); /* Rotate 180 degrees */
+  transform: rotate(-180deg) translateY(15%); 
 }
 
 #settings path {
-  fill: black; /* Change to your desired color */
+  fill: black; 
 }
 
 #settings:hover path {
-  fill: grey; /* Color change on hover */
+  fill: grey; 
 }

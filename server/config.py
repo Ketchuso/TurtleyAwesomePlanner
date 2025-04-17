@@ -31,7 +31,5 @@ api = Api(app)
 bcrypt = Bcrypt(app)
 app.secret_key = 'something-secret'  # Preferably use an environment variable or secure method
 
-
-
 # Instantiate CORS
 CORS(app)

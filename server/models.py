@@ -18,11 +18,9 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
 
-
     calendar_event = db.relationship('Calendar_Event', back_populates='user', cascade='all, delete-orphan')
 
     serialize_rules = ("-calendar_event.user",)
-
 
     @hybrid_property
     def password_hash(self):
@@ -37,8 +35,6 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
-
-
 
 class Event(db.Model, SerializerMixin):
     __tablename__ = "events"
@@ -55,7 +51,6 @@ class Event(db.Model, SerializerMixin):
         return [ce.user_id for ce in self.calendar_event]
 
     serialize_only = ("id", "title", "date", "time", "user_ids")
-        
 
 class Calendar_Event(db.Model, SerializerMixin):
     __tablename__ = "calendar_events"
